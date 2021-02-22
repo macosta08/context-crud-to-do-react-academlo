@@ -105,19 +105,21 @@ export const TodoContainer = () => {
     setIsEditOrAdd("Edit Task");
   };
 
-  const todoItem = tasks.map((task) => (
-    <Col key={task._id}>
-      <TodoItem
-        id={task._id}
-        task={task.task}
-        student={task.student}
-        isCompleted={task.isCompleted}
-        handleDelete={handleDelete}
-        handleChecked={handleChecked}
-        handleUpdateTask={handleUpdateTask}
-      />
-    </Col>
-  ));
+  const todoItem = tasks
+    .sort((t1, t2) => t1.isCompleted - t2.isCompleted)
+    .map((task) => (
+      <Col key={task._id}>
+        <TodoItem
+          id={task._id}
+          task={task.task}
+          student={task.student}
+          isCompleted={task.isCompleted}
+          handleDelete={handleDelete}
+          handleChecked={handleChecked}
+          handleUpdateTask={handleUpdateTask}
+        />
+      </Col>
+    ));
 
   return (
     <Container>
